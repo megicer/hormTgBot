@@ -1,0 +1,56 @@
+const tgForm = document.querySelector('#tg-form')
+tgForm.addEventListener('submit', async (event) => {   
+
+  event.preventDefault()
+
+  const name = document.querySelector('#username').value;
+  const phone = document.querySelector('#userphone').value;
+  const type = document.querySelector('#workout-type').value;
+  const btnFC = document.querySelector('#btnFC')
+
+  if (name.trim() === "") {
+    alert("Пожалуйста, введите ваше имя.");
+    return;
+  } 
+  if (phone.trim() === "") {
+    alert("Пожалуйста, введите ваш телефон.");
+    return; 
+  }
+
+  const message = `
+    <b>Новая заявка с сайта!</b>
+    <b>Имя: ${name}</b>
+    <b>Телефон: ${phone}</b>
+    <b>Тип: ${type}</b>
+  `;
+
+  try {
+    btnFC.textContent = "Отправка..."
+    btnFC.disabled = true;
+
+    const response = await fetch(URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        chat_id: CHAT_ID,
+        parse_mode: 'html',
+        text: message
+      })
+    });
+
+    if (response.ok) {
+      alert("Заявка успешно отправлена! Тренер скоро свяжется с тобой.");
+      tgForm.reset(); // Очищаем форму
+      btnFC.textContent = "Отправить заявку"
+      btnFC.disabled = false;
+    } else {
+      throw new Error("Ошибка при отправке");
+    }
+
+  } catch (error) {
+    alert("Произошла ошибка. Попробуй еще раз.");
+    btnFC.textContent = "Отправить заявку"
+    btnFC.disabled = false;
+    console.error(error);
+  }
+});
