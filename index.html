@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Заявка на тренировку</title>
+    <style>
+        /* Добавим немного коммерческого стиля, чтобы проект выглядел дорого */
+        body { font-family: Arial, sans-serif; background: #f4f4f9; padding: 50px; }
+        .form-container { max-width: 400px; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        input, select { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+        button { width: 100%; padding: 12px; background: #28a745; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 16px; }
+        button:hover { background: #218838; }
+    </style>
+</head>
+<body>
+
+<div class="form-container">
+    <h2>Записаться на тренировку</h2>
+    <form id="tg-form">
+        <div class="form-group">
+            <label for="username">Имя:</label>
+            <input type="text" id="username" placeholder="Иван" required>
+        </div>
+        <div class="form-group">
+            <label for="userphone">Телефон:</label>
+            <input type="tel" id="userphone" placeholder="+7 (999) 999-99-99" required>
+        </div>
+        <div class="form-group">
+            <label for="workout-type">Тип тренировки:</label>
+            <select id="workout-type">
+                <option value="Бокс">Бокс (Спарринг)</option>
+                <option value="ОФП + Гири">ОФП + Гири 16 кг</option>
+                <option value="Выносливость">Развитие дыхалки</option>
+            </select>
+        </div>
+        <button id="btnFC" type="submit">Отправить заявку</button>
+    </form>
+</div>
+
+
+<script src="app.js"></script>
+</body>
+</html>
